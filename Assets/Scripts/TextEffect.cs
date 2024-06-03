@@ -8,14 +8,17 @@ public class TextEffect : MonoBehaviour
     public float duration = 3f;
     public float pauseDuration = 2f;
     public float radius = 500f;
+    private Transform logoPlacement;
 
     void Start()
     {
+        logoPlacement = GameObject.Find("LogoPlacement").transform;
+
         // Create the sequence
         Sequence sequence = DOTween.Sequence();
 
         // Move to 1000x
-        sequence.Append(transform.DOMoveX(1000, duration).SetEase(Ease.InOutSine));
+        sequence.Append(transform.DOMoveX(logoPlacement.position.x, duration).SetEase(Ease.InOutSine));
         sequence.AppendInterval(pauseDuration);
 
         // Move to 3000x
